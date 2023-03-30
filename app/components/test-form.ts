@@ -1,14 +1,25 @@
 import Component from '@glimmer/component';
 
+import {
+  validatePresence,
+  validateFormat,
+  // @ts-expect-error: ember-changeset-validations is not typed
+} from 'ember-changeset-validations/validators';
+
 interface MyFormData {
   firstName?: string;
-  lastName?: string;
+  email?: string;
 }
 
 export default class TestFormComponent extends Component {
   data: MyFormData = {};
 
-  handleSubmit({ firstName, lastName }: MyFormData) {
-    alert(`Hello ${firstName} ${lastName}!`);
+  validations = {
+    name: validatePresence(true),
+    email: validateFormat({ type: 'email' }),
+  };
+
+  handleSubmit({ firstName, email }: MyFormData) {
+    alert(`Hello ${firstName} with email ${email}!`);
   }
 }
