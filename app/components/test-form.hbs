@@ -3,7 +3,7 @@
   @data={{changeset this.data this.validations}}
   @dataMode="mutable"
   @onSubmit={{this.handleSubmit}}
-  @validate={{helper "validate-changeset"}}
+  @validate={{this.validateMethod}}
   as |form|
 >
   <form.Field @name="name" as |field|>

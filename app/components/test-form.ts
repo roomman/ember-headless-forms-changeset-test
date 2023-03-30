@@ -6,6 +6,8 @@ import {
   // @ts-expect-error: ember-changeset-validations is not typed
 } from 'ember-changeset-validations/validators';
 
+import { validateChangeset } from 'ember-headless-form-changeset';
+
 interface MyFormData {
   firstName?: string;
   email?: string;
@@ -13,6 +15,10 @@ interface MyFormData {
 
 export default class TestFormComponent extends Component {
   data: MyFormData = {};
+
+  get validateMethod() {
+    return validateChangeset;
+  }
 
   validations = {
     name: validatePresence(true),
